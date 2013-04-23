@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		B278EFFC7E9F4E5BA79AA31F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FE76E426004445AAE7B006 /* libPods.a */; };
 		F36B2EA31725B195009F3083 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EA21725B195009F3083 /* LeftViewController.m */; };
-		F36B2EA91725B514009F3083 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */; };
-		F36B2EAC1725B7AB009F3083 /* EventCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */; };
 		F37EA07E171832FC00376C2D /* myLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA07C1718320000376C2D /* myLocation.m */; };
 		F37EA080171832FC00376C2D /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA07A1718320000376C2D /* Speaker.m */; };
 		F37EA082171832FC00376C2D /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0781718320000376C2D /* Session.m */; };
@@ -61,10 +59,6 @@
 		A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		F36B2EA11725B195009F3083 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		F36B2EA21725B195009F3083 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
-		F36B2EA71725B514009F3083 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
-		F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
-		F36B2EAA1725B79A009F3083 /* EventCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCollectionController.h; sourceTree = "<group>"; };
-		F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCollectionController.m; sourceTree = "<group>"; };
 		F37EA0711718320000376C2D /* SessionCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SessionCategory.h; path = model/SessionCategory.h; sourceTree = "<group>"; };
 		F37EA0721718320000376C2D /* SessionCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SessionCategory.m; path = model/SessionCategory.m; sourceTree = "<group>"; };
 		F37EA0731718320000376C2D /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Event.h; path = model/Event.h; sourceTree = "<group>"; };
@@ -213,12 +207,8 @@
 				F36B2EA11725B195009F3083 /* LeftViewController.h */,
 				F36B2EA21725B195009F3083 /* LeftViewController.m */,
 				F3B54F9A1709FB0C0080658A /* MainStoryboard_iPhone.storyboard */,
-				F36B2EA71725B514009F3083 /* MyCollectionViewCell.h */,
-				F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */,
 				F3B54FA31709FB0C0080658A /* EventListController.h */,
 				F3B54FA41709FB0C0080658A /* EventListController.m */,
-				F36B2EAA1725B79A009F3083 /* EventCollectionController.h */,
-				F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */,
 				F37EA08917183C0C00376C2D /* SessionListController.h */,
 				F37EA08A17183C2A00376C2D /* SessionListController.m */,
 				F3B54FA61709FB0C0080658A /* DetailViewController.h */,
@@ -415,8 +405,6 @@
 				F3B54FA81709FB0C0080658A /* DetailViewController.m in Sources */,
 				F37EA08B17183C2A00376C2D /* SessionListController.m in Sources */,
 				F36B2EA31725B195009F3083 /* LeftViewController.m in Sources */,
-				F36B2EA91725B514009F3083 /* MyCollectionViewCell.m in Sources */,
-				F36B2EAC1725B7AB009F3083 /* EventCollectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
