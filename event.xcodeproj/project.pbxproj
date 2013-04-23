@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B278EFFC7E9F4E5BA79AA31F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FE76E426004445AAE7B006 /* libPods.a */; };
+		F36B2EA31725B195009F3083 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EA21725B195009F3083 /* LeftViewController.m */; };
+		F36B2EA91725B514009F3083 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */; };
+		F36B2EAC1725B7AB009F3083 /* EventCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */; };
+		F37EA07E171832FC00376C2D /* myLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA07C1718320000376C2D /* myLocation.m */; };
+		F37EA080171832FC00376C2D /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA07A1718320000376C2D /* Speaker.m */; };
+		F37EA082171832FC00376C2D /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0781718320000376C2D /* Session.m */; };
+		F37EA084171832FC00376C2D /* Links.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0761718320000376C2D /* Links.m */; };
+		F37EA086171832FC00376C2D /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0741718320000376C2D /* Event.m */; };
+		F37EA088171832FC00376C2D /* SessionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0721718320000376C2D /* SessionCategory.m */; };
+		F37EA08B17183C2A00376C2D /* SessionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA08A17183C2A00376C2D /* SessionListController.m */; };
 		F3B54F811709FB0B0080658A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F801709FB0B0080658A /* UIKit.framework */; };
 		F3B54F831709FB0B0080658A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F821709FB0B0080658A /* Foundation.framework */; };
 		F3B54F851709FB0B0080658A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F841709FB0B0080658A /* CoreGraphics.framework */; };
@@ -18,9 +29,8 @@
 		F3B54F971709FB0C0080658A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B54F961709FB0C0080658A /* Default@2x.png */; };
 		F3B54F991709FB0C0080658A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B54F981709FB0C0080658A /* Default-568h@2x.png */; };
 		F3B54F9C1709FB0C0080658A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B54F9A1709FB0C0080658A /* MainStoryboard_iPhone.storyboard */; };
-		F3B54F9F1709FB0C0080658A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B54F9D1709FB0C0080658A /* MainStoryboard_iPad.storyboard */; };
 		F3B54FA21709FB0C0080658A /* event.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B54FA01709FB0C0080658A /* event.xcdatamodeld */; };
-		F3B54FA51709FB0C0080658A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B54FA41709FB0C0080658A /* MasterViewController.m */; };
+		F3B54FA51709FB0C0080658A /* EventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B54FA41709FB0C0080658A /* EventListController.m */; };
 		F3B54FA81709FB0C0080658A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B54FA71709FB0C0080658A /* DetailViewController.m */; };
 		F3B54FB01709FB0C0080658A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FAF1709FB0C0080658A /* SenTestingKit.framework */; };
 		F3B54FB11709FB0C0080658A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F801709FB0B0080658A /* UIKit.framework */; };
@@ -28,6 +38,12 @@
 		F3B54FB31709FB0C0080658A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F861709FB0B0080658A /* CoreData.framework */; };
 		F3B54FBB1709FB0C0080658A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3B54FB91709FB0C0080658A /* InfoPlist.strings */; };
 		F3B54FBE1709FB0C0080658A /* eventTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B54FBD1709FB0C0080658A /* eventTests.m */; };
+		F3B54FDD1709FCAC0080658A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FDC1709FCAC0080658A /* CFNetwork.framework */; };
+		F3B54FDF1709FCCF0080658A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FDE1709FCCF0080658A /* MobileCoreServices.framework */; };
+		F3B54FE11709FCD70080658A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FE01709FCD70080658A /* Security.framework */; };
+		F3B54FE31709FCDF0080658A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FE21709FCDF0080658A /* SystemConfiguration.framework */; };
+		F3B54FE51709FCE70080658A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FE41709FCE70080658A /* QuartzCore.framework */; };
+		F3B54FE71709FCF60080658A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54FE61709FCF60080658A /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +57,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03FE76E426004445AAE7B006 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		F36B2EA11725B195009F3083 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		F36B2EA21725B195009F3083 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		F36B2EA71725B514009F3083 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		F36B2EAA1725B79A009F3083 /* EventCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCollectionController.h; sourceTree = "<group>"; };
+		F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCollectionController.m; sourceTree = "<group>"; };
+		F37EA0711718320000376C2D /* SessionCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SessionCategory.h; path = model/SessionCategory.h; sourceTree = "<group>"; };
+		F37EA0721718320000376C2D /* SessionCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SessionCategory.m; path = model/SessionCategory.m; sourceTree = "<group>"; };
+		F37EA0731718320000376C2D /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Event.h; path = model/Event.h; sourceTree = "<group>"; };
+		F37EA0741718320000376C2D /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = model/Event.m; sourceTree = "<group>"; };
+		F37EA0751718320000376C2D /* Links.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Links.h; path = model/Links.h; sourceTree = "<group>"; };
+		F37EA0761718320000376C2D /* Links.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Links.m; path = model/Links.m; sourceTree = "<group>"; };
+		F37EA0771718320000376C2D /* Session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Session.h; path = model/Session.h; sourceTree = "<group>"; };
+		F37EA0781718320000376C2D /* Session.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Session.m; path = model/Session.m; sourceTree = "<group>"; };
+		F37EA0791718320000376C2D /* Speaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Speaker.h; path = model/Speaker.h; sourceTree = "<group>"; };
+		F37EA07A1718320000376C2D /* Speaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Speaker.m; path = model/Speaker.m; sourceTree = "<group>"; };
+		F37EA07B1718320000376C2D /* myLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = myLocation.h; path = model/myLocation.h; sourceTree = "<group>"; };
+		F37EA07C1718320000376C2D /* myLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = myLocation.m; path = model/myLocation.m; sourceTree = "<group>"; };
+		F37EA08917183C0C00376C2D /* SessionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionListController.h; sourceTree = "<group>"; };
+		F37EA08A17183C2A00376C2D /* SessionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionListController.m; sourceTree = "<group>"; };
 		F3B54F7D1709FB0B0080658A /* event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B54F801709FB0B0080658A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F3B54F821709FB0B0080658A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,10 +94,9 @@
 		F3B54F961709FB0C0080658A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F3B54F981709FB0C0080658A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F3B54F9B1709FB0C0080658A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		F3B54F9E1709FB0C0080658A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		F3B54FA11709FB0C0080658A /* event.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = event.xcdatamodel; sourceTree = "<group>"; };
-		F3B54FA31709FB0C0080658A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		F3B54FA41709FB0C0080658A /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		F3B54FA31709FB0C0080658A /* EventListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventListController.h; sourceTree = "<group>"; };
+		F3B54FA41709FB0C0080658A /* EventListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventListController.m; sourceTree = "<group>"; };
 		F3B54FA61709FB0C0080658A /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		F3B54FA71709FB0C0080658A /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F3B54FAE1709FB0C0080658A /* eventTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eventTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +105,12 @@
 		F3B54FBA1709FB0C0080658A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3B54FBC1709FB0C0080658A /* eventTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eventTests.h; sourceTree = "<group>"; };
 		F3B54FBD1709FB0C0080658A /* eventTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eventTests.m; sourceTree = "<group>"; };
+		F3B54FDC1709FCAC0080658A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F3B54FDE1709FCCF0080658A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F3B54FE01709FCD70080658A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F3B54FE21709FCDF0080658A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F3B54FE41709FCE70080658A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F3B54FE61709FCF60080658A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +118,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B54FDF1709FCCF0080658A /* MobileCoreServices.framework in Frameworks */,
+				F3B54FE31709FCDF0080658A /* SystemConfiguration.framework in Frameworks */,
+				F3B54FE71709FCF60080658A /* libxml2.dylib in Frameworks */,
+				F3B54FE51709FCE70080658A /* QuartzCore.framework in Frameworks */,
+				F3B54FE11709FCD70080658A /* Security.framework in Frameworks */,
+				F3B54F871709FB0B0080658A /* CoreData.framework in Frameworks */,
+				F3B54FDD1709FCAC0080658A /* CFNetwork.framework in Frameworks */,
 				F3B54F811709FB0B0080658A /* UIKit.framework in Frameworks */,
 				F3B54F831709FB0B0080658A /* Foundation.framework in Frameworks */,
 				F3B54F851709FB0B0080658A /* CoreGraphics.framework in Frameworks */,
-				F3B54F871709FB0B0080658A /* CoreData.framework in Frameworks */,
+				B278EFFC7E9F4E5BA79AA31F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +146,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F37EA0581718315900376C2D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F37EA07B1718320000376C2D /* myLocation.h */,
+				F37EA07C1718320000376C2D /* myLocation.m */,
+				F37EA0791718320000376C2D /* Speaker.h */,
+				F37EA07A1718320000376C2D /* Speaker.m */,
+				F37EA0771718320000376C2D /* Session.h */,
+				F37EA0781718320000376C2D /* Session.m */,
+				F37EA0751718320000376C2D /* Links.h */,
+				F37EA0761718320000376C2D /* Links.m */,
+				F37EA0731718320000376C2D /* Event.h */,
+				F37EA0741718320000376C2D /* Event.m */,
+				F37EA0711718320000376C2D /* SessionCategory.h */,
+				F37EA0721718320000376C2D /* SessionCategory.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		F3B54F741709FB0B0080658A = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +172,7 @@
 				F3B54FB61709FB0C0080658A /* eventTests */,
 				F3B54F7F1709FB0B0080658A /* Frameworks */,
 				F3B54F7E1709FB0B0080658A /* Products */,
+				A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,11 +188,18 @@
 		F3B54F7F1709FB0B0080658A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3B54FE61709FCF60080658A /* libxml2.dylib */,
+				F3B54FE41709FCE70080658A /* QuartzCore.framework */,
+				F3B54FE21709FCDF0080658A /* SystemConfiguration.framework */,
+				F3B54FE01709FCD70080658A /* Security.framework */,
+				F3B54FDE1709FCCF0080658A /* MobileCoreServices.framework */,
+				F3B54FDC1709FCAC0080658A /* CFNetwork.framework */,
 				F3B54F801709FB0B0080658A /* UIKit.framework */,
 				F3B54F821709FB0B0080658A /* Foundation.framework */,
 				F3B54F841709FB0B0080658A /* CoreGraphics.framework */,
 				F3B54F861709FB0B0080658A /* CoreData.framework */,
 				F3B54FAF1709FB0C0080658A /* SenTestingKit.framework */,
+				03FE76E426004445AAE7B006 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,12 +207,20 @@
 		F3B54F881709FB0B0080658A /* event */ = {
 			isa = PBXGroup;
 			children = (
+				F37EA0581718315900376C2D /* model */,
 				F3B54F911709FB0B0080658A /* AppDelegate.h */,
 				F3B54F921709FB0B0080658A /* AppDelegate.m */,
+				F36B2EA11725B195009F3083 /* LeftViewController.h */,
+				F36B2EA21725B195009F3083 /* LeftViewController.m */,
 				F3B54F9A1709FB0C0080658A /* MainStoryboard_iPhone.storyboard */,
-				F3B54F9D1709FB0C0080658A /* MainStoryboard_iPad.storyboard */,
-				F3B54FA31709FB0C0080658A /* MasterViewController.h */,
-				F3B54FA41709FB0C0080658A /* MasterViewController.m */,
+				F36B2EA71725B514009F3083 /* MyCollectionViewCell.h */,
+				F36B2EA81725B514009F3083 /* MyCollectionViewCell.m */,
+				F3B54FA31709FB0C0080658A /* EventListController.h */,
+				F3B54FA41709FB0C0080658A /* EventListController.m */,
+				F36B2EAA1725B79A009F3083 /* EventCollectionController.h */,
+				F36B2EAB1725B7AB009F3083 /* EventCollectionController.m */,
+				F37EA08917183C0C00376C2D /* SessionListController.h */,
+				F37EA08A17183C2A00376C2D /* SessionListController.m */,
 				F3B54FA61709FB0C0080658A /* DetailViewController.h */,
 				F3B54FA71709FB0C0080658A /* DetailViewController.m */,
 				F3B54FA01709FB0C0080658A /* event.xcdatamodeld */,
@@ -184,9 +269,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3B54FC11709FB0C0080658A /* Build configuration list for PBXNativeTarget "event" */;
 			buildPhases = (
+				FA473D5AC3F247CEA600989A /* Check Pods Manifest.lock */,
 				F3B54F791709FB0B0080658A /* Sources */,
 				F3B54F7A1709FB0B0080658A /* Frameworks */,
 				F3B54F7B1709FB0B0080658A /* Resources */,
+				2712BDC947DF4CDBA799B763 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,7 +340,6 @@
 				F3B54F971709FB0C0080658A /* Default@2x.png in Resources */,
 				F3B54F991709FB0C0080658A /* Default-568h@2x.png in Resources */,
 				F3B54F9C1709FB0C0080658A /* MainStoryboard_iPhone.storyboard in Resources */,
-				F3B54F9F1709FB0C0080658A /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +354,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2712BDC947DF4CDBA799B763 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 		F3B54FAC1709FB0C0080658A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +381,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		FA473D5AC3F247CEA600989A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -288,11 +402,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37EA07E171832FC00376C2D /* myLocation.m in Sources */,
+				F37EA080171832FC00376C2D /* Speaker.m in Sources */,
+				F37EA082171832FC00376C2D /* Session.m in Sources */,
+				F37EA084171832FC00376C2D /* Links.m in Sources */,
+				F37EA086171832FC00376C2D /* Event.m in Sources */,
+				F37EA088171832FC00376C2D /* SessionCategory.m in Sources */,
 				F3B54F8F1709FB0B0080658A /* main.m in Sources */,
 				F3B54F931709FB0B0080658A /* AppDelegate.m in Sources */,
 				F3B54FA21709FB0C0080658A /* event.xcdatamodeld in Sources */,
-				F3B54FA51709FB0C0080658A /* MasterViewController.m in Sources */,
+				F3B54FA51709FB0C0080658A /* EventListController.m in Sources */,
 				F3B54FA81709FB0C0080658A /* DetailViewController.m in Sources */,
+				F37EA08B17183C2A00376C2D /* SessionListController.m in Sources */,
+				F36B2EA31725B195009F3083 /* LeftViewController.m in Sources */,
+				F36B2EA91725B514009F3083 /* MyCollectionViewCell.m in Sources */,
+				F36B2EAC1725B7AB009F3083 /* EventCollectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,14 +455,6 @@
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		F3B54F9D1709FB0C0080658A /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3B54F9E1709FB0C0080658A /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		F3B54FB91709FB0C0080658A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -375,8 +491,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -400,8 +521,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -410,6 +536,7 @@
 		};
 		F3B54FC21709FB0C0080658A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "event/event-Prefix.pch";
@@ -421,6 +548,7 @@
 		};
 		F3B54FC31709FB0C0080658A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "event/event-Prefix.pch";
@@ -483,6 +611,7 @@
 				F3B54FC31709FB0C0080658A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3B54FC41709FB0C0080658A /* Build configuration list for PBXNativeTarget "eventTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +620,7 @@
 				F3B54FC61709FB0C0080658A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

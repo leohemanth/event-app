@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="no_of_days" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updated_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="event" inverseEntity="Location" syncable="YES"/>
+        <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="event" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="Links" representedClassName="Links" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="speaker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Speaker" inverseName="links" inverseEntity="Speaker" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="myLocation">
+        <attribute name="event_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="loc_id" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="locations" inverseEntity="Event" syncable="YES"/>
+        <relationship name="session" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="location" inverseEntity="Session" syncable="YES"/>
+        <userInfo/>
+    </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="event_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="session_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SessionCategory" inverseName="sessions" inverseEntity="SessionCategory" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="speakers" inverseEntity="Event" syncable="YES"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="session" inverseEntity="Location" syncable="YES"/>
+        <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speaker" inverseName="sessions" inverseEntity="Speaker" syncable="YES"/>
+    </entity>
+    <entity name="SessionCategory" representedClassName="SessionCategory" syncable="YES">
+        <attribute name="category_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="categories" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="Speaker" representedClassName="Speaker" syncable="YES">
+        <relationship name="links" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Links" inverseName="speaker" inverseEntity="Links" syncable="YES"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="speakers" inverseEntity="Session" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Event" positionX="250" positionY="-153" width="128" height="178"/>
+        <element name="Links" positionX="-189" positionY="288" width="128" height="88"/>
+        <element name="Location" positionX="261" positionY="189" width="128" height="118"/>
+        <element name="Session" positionX="18" positionY="-49" width="128" height="210"/>
+        <element name="SessionCategory" positionX="-207" positionY="-153" width="128" height="103"/>
+        <element name="Speaker" positionX="-198" positionY="167" width="128" height="73"/>
     </elements>
 </model>

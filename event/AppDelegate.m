@@ -7,155 +7,116 @@
 //
 
 #import "AppDelegate.h"
-
-#import "MasterViewController.h"
-
+#import "EventListController.h"
 @implementation AppDelegate
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
+RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping,*linksEntityMapping,*sessionCategoryEntityMapping;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSError *error = nil;
+    NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"event" ofType:@"momd"]];
+    // NOTE: Due to an iOS 5 bug, the managed object model returned is immutable.
+    NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
+    [self setManagedObjectStore: [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel]];
+    
+    // Initialize the Core Data stack
+    [self.managedObjectStore createPersistentStoreCoordinator];
+    
+    NSPersistentStore __unused *persistentStore = [self.managedObjectStore addInMemoryPersistentStore:&error];
+    NSAssert(persistentStore, @"Failed to add persistent store: %@", error);
+    
+    [self.managedObjectStore createManagedObjectContexts];
+    
+    // Set the default store shared instance
+    [RKManagedObjectStore setDefaultStore:self.managedObjectStore];
+    
+    NSString *url=@"http://192.168.11.11:3000";
+    
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
+    
+    objectManager.managedObjectStore = self.managedObjectStore;
+    
+    [RKObjectManager setSharedManager:objectManager];
+    
+    
+    eventEntityMapping.identificationAttributes = @[ @"event_id" ];
+    
+    [self mapEntities];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventEntityMapping pathPattern:@"/api/v1/events" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    RKResponseDescriptor *responseDescriptor2 = [RKResponseDescriptor responseDescriptorWithMapping:sessionEntitiyMapping pathPattern:@"/api/v1/sessions" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [objectManager addResponseDescriptor:responseDescriptor2];
+    
+    
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-        
-        UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
-    } else {
-        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
-    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"mainCenterController"];
+    
+    IIViewDeckController* secondDeckController =  [[IIViewDeckController alloc] initWithCenterViewController:navigationController
+                                                                                          leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"sideBarController"]];
+    secondDeckController.centerhiddenInteractivity=IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    self.window.rootViewController = secondDeckController;
     return YES;
 }
-							
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
-}
-
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
-}
-
-#pragma mark - Core Data stack
-
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
+-(void)mapEntities{
+    //event
+    eventEntityMapping = [RKEntityMapping mappingForEntityForName:@"Event" inManagedObjectStore:self.managedObjectStore];
+    [eventEntityMapping addAttributeMappingsFromDictionary:@{
+     @"id":             @"event_id",
+     @"name":           @"name",
+     @"description":    @"desc",
+     @"no_of_days":     @"no_of_days",
+     @"start_date":     @"start_date",
+     }];
+    eventEntityMapping.identificationAttributes = @[ @"event_id" ];
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return _managedObjectContext;
-}
-
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"event" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
+    sessionEntitiyMapping = [RKEntityMapping mappingForEntityForName:@"Session" inManagedObjectStore:self.managedObjectStore];
+    [sessionEntitiyMapping addAttributeMappingsFromDictionary:@{
+     @"name":           @"name",
+     @"description":    @"desc",
+     @"start_time":     @"start_time",
+     @"duration":       @"duration",
+     @"location_id":    @"location_id",
+     @"event_id":       @"event_id",
+     @"id":             @"session_id",
+     }];
+    sessionEntitiyMapping.identificationAttributes = @[ @"session_id" ];
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"event.sqlite"];
     
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
-    
-    return _persistentStoreCoordinator;
+    //    //session
+    //    RKEntityMapping *sessionEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
+    //    [sessionEntityMapping addAttributeMappingsFromDictionary:@{
+    //     @"id":             @"locID",
+    //     @"name":            @"name"}];
+    //    sessionEntityMapping.identificationAttributes = @[ @"locID" ];
+    //
+    //
+    //    //speaker
+    //    RKEntityMapping *speakerEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
+    //    [speakerEntityMapping addAttributeMappingsFromDictionary:@{
+    //     @"id":             @"locID",
+    //     @"name":            @"name"}];
+    //    speakerEntityMapping.identificationAttributes = @[ @"locID" ];
+    //
+    //
+    //    //links
+    //    RKEntityMapping *linksEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
+    //    [linksEntityMapping addAttributeMappingsFromDictionary:@{
+    //     @"id":             @"locID",
+    //     @"name":            @"name"}];
+    //    linksEntityMapping.identificationAttributes = @[ @"locID" ];
+    //
+    //
+    //    //sessioncategory
+    //    RKEntityMapping *sessionCategoryEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
+    //    [sessionCategoryEntityMapping addAttributeMappingsFromDictionary:@{
+    //     @"id":             @"locID",
+    //     @"name":            @"name"}];
+    //    sessionCategoryEntityMapping.identificationAttributes = @[ @"locID" ];
+    //
 }
-
-#pragma mark - Application's Documents directory
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
 @end
