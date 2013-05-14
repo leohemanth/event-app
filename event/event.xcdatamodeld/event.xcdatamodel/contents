@@ -46,6 +46,7 @@
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="categories" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Speaker" representedClassName="Speaker" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="links" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Links" inverseName="speaker" inverseEntity="Links" syncable="YES"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="speakers" inverseEntity="Session" syncable="YES"/>
     </entity>
@@ -55,6 +56,6 @@
         <element name="Location" positionX="261" positionY="189" width="128" height="118"/>
         <element name="Session" positionX="18" positionY="-49" width="128" height="210"/>
         <element name="SessionCategory" positionX="-207" positionY="-153" width="128" height="103"/>
-        <element name="Speaker" positionX="-198" positionY="167" width="128" height="73"/>
+        <element name="Speaker" positionX="-198" positionY="167" width="128" height="90"/>
     </elements>
 </model>

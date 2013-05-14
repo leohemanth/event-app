@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Session.h"
 #import "AppDelegate.h"
+#import "ListController.h"
 @class DetailViewController;
 
 #import <CoreData/CoreData.h>
 
-@interface SessionListController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface SessionListController : ListController <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Session *detailItem;
 @end

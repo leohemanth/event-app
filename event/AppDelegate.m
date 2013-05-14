@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "EventListController.h"
+#import "IIViewDeckController.h"
+#import <UIKit/UIKit.h>
 @implementation AppDelegate
 
 RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping,*linksEntityMapping,*sessionCategoryEntityMapping;
@@ -33,13 +34,12 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     NSString *url=@"http://192.168.11.11:3000";
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
-    
+//    RKLogConfigureByName("RestKit", RKLogLevelWarning);
+//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+//    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     objectManager.managedObjectStore = self.managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];
-    
-    
-    eventEntityMapping.identificationAttributes = @[ @"event_id" ];
     
     [self mapEntities];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventEntityMapping pathPattern:@"/api/v1/events" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
@@ -85,38 +85,5 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
      @"id":             @"session_id",
      }];
     sessionEntitiyMapping.identificationAttributes = @[ @"session_id" ];
-    
-    
-    //    //session
-    //    RKEntityMapping *sessionEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
-    //    [sessionEntityMapping addAttributeMappingsFromDictionary:@{
-    //     @"id":             @"locID",
-    //     @"name":            @"name"}];
-    //    sessionEntityMapping.identificationAttributes = @[ @"locID" ];
-    //
-    //
-    //    //speaker
-    //    RKEntityMapping *speakerEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
-    //    [speakerEntityMapping addAttributeMappingsFromDictionary:@{
-    //     @"id":             @"locID",
-    //     @"name":            @"name"}];
-    //    speakerEntityMapping.identificationAttributes = @[ @"locID" ];
-    //
-    //
-    //    //links
-    //    RKEntityMapping *linksEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
-    //    [linksEntityMapping addAttributeMappingsFromDictionary:@{
-    //     @"id":             @"locID",
-    //     @"name":            @"name"}];
-    //    linksEntityMapping.identificationAttributes = @[ @"locID" ];
-    //
-    //
-    //    //sessioncategory
-    //    RKEntityMapping *sessionCategoryEntityMapping = [RKEntityMapping mappingForEntityForName:@"Location" inManagedObjectStore:managedObjectStore];
-    //    [sessionCategoryEntityMapping addAttributeMappingsFromDictionary:@{
-    //     @"id":             @"locID",
-    //     @"name":            @"name"}];
-    //    sessionCategoryEntityMapping.identificationAttributes = @[ @"locID" ];
-    //
 }
 @end

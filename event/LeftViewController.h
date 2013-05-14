@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Model.h"
+#import "ListController.h"
 @interface LeftViewController : UITableViewController
 
 @end
