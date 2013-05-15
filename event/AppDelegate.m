@@ -31,12 +31,12 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:self.managedObjectStore];
     
-    NSString *url=@"http://192.168.11.11:3000";
+    NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
-//    RKLogConfigureByName("RestKit", RKLogLevelWarning);
-//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-//    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit", RKLogLevelWarning);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     objectManager.managedObjectStore = self.managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];
@@ -73,6 +73,7 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
      @"start_date":     @"start_date",
      }];
     eventEntityMapping.identificationAttributes = @[ @"event_id" ];
+
     
     sessionEntitiyMapping = [RKEntityMapping mappingForEntityForName:@"Session" inManagedObjectStore:self.managedObjectStore];
     [sessionEntitiyMapping addAttributeMappingsFromDictionary:@{
