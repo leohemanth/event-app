@@ -57,5 +57,7 @@
     }
     [self.viewDeckController closeLeftView];
 }
+-(void)viewDidDisappear:(BOOL)animated{
+}
 
 @end

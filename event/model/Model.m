@@ -10,7 +10,13 @@
 #import "Event.h"
 #import "Session.h"
 #import "Speaker.h"
+
 @implementation Model
+id<ModelUpdate> modelUpdater;
+
++(void)init:(id<ModelUpdate>)uiModelUpdater{
+    modelUpdater=uiModelUpdater;
+}
 
 +(NSString*)displayFor:(Models)model{
     switch (model) {
@@ -107,6 +113,23 @@
         default:
             break;
     }
+}
+
++(void)update:(NSManagedObject*)object ofType:(Models)model{
+    [modelUpdater beginUpdate];
+    [[RKObjectManager sharedManager] getObjectsAtPath:[Model listApiFor:model]
+                                           parameters:nil
+                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                  [modelUpdater finishUpdate];
+                                              }
+                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                  [modelUpdater updateError];
+                                              }];
+}
+
++(void)updateAll:(NSManagedObject *)managedObject{
+    [Model update:managedObject ofType:Eventm];
+    [Model update:managedObject ofType:Sessionm];
 }
 
 @end
