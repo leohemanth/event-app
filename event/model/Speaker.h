@@ -2,7 +2,7 @@
 //  Speaker.h
 //  event
 //
-//  Created by Hemanth Prasad on 06/07/13.
+//  Created by Hemanth Prasad on 08/07/13.
 //  Copyright (c) 2013 Hemanth Prasad. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Speaker : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * speaker_id;
 @property (nonatomic, retain) NSSet *links;
 @property (nonatomic, retain) NSSet *sessions;
 @end

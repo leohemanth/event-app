@@ -10,6 +10,7 @@
 #import "IIViewDeckController.h"
 #import <UIKit/UIKit.h>
 #import "Model.h"
+#import "CoreData+MagicalRecord.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -20,12 +21,18 @@
     // Override point for customization after application launch.
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"mainCenterController"];
+//    
+//    IIViewDeckController* secondDeckController =  [[IIViewDeckController alloc] initWithCenterViewController:navigationController
+//                                                                                          leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"sideBarController"]];
+    IIViewDeckController* secondDeckController = [[IIViewDeckController alloc] initWithCenterViewController:navigationController rightViewController:[storyboard instantiateViewControllerWithIdentifier:@"sideBarController"]];
     
-    IIViewDeckController* secondDeckController =  [[IIViewDeckController alloc] initWithCenterViewController:navigationController
-                                                                                          leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"sideBarController"]];
     secondDeckController.centerhiddenInteractivity=IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
     self.window.rootViewController = secondDeckController;
     return YES;
+}
+
+-(void)applicationWillTerminate:(UIApplication *)application{
+     [MagicalRecord cleanUp];
 }
 
 @end

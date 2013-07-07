@@ -8,7 +8,6 @@
 
 #import <CoreData/CoreData.h>
 #import "ModelMethods.h"
-
 @interface NSManagedObject (Extended) <ModelMethods>
 +(NSString*)display;
 +(NSString*)listApi;

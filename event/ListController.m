@@ -35,21 +35,22 @@
     UIRefreshControl *refreshControl = [UIRefreshControl new];
     [refreshControl addTarget:self action:@selector(loadLocs) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.viewDeckController action:@selector(toggleLeftView)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.viewDeckController action:@selector(toggleRightView)];
+    self.viewDeckController.rightSize = 170;
+//    self.viewDeckController.leftSize = 10;
     self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
     self.managedObjectContext = [Model sharedModel].managedObjectStore.mainQueueManagedObjectContext;
-
+    
 }
 
 
 -(void)setModell:(Class)model{
-        _modell=model;
-        self.title=[self.modell display];
-    NSLog(@"title set to %@",[self.modell display]);
-        _fetchedResultsController = nil;
-        _filteredFetchedResultsController = nil;
-        [self.tableView reloadData];
-//        [self.refreshControl beginRefreshing];
+    _modell=model;
+    self.title=[self.modell display];
+    _fetchedResultsController = nil;
+    _filteredFetchedResultsController = nil;
+    [self.tableView reloadData];
+    //        [self.refreshControl beginRefreshing];
 }
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 //    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:[gestureRecognizer locationInView:self.tableView]];
@@ -74,15 +75,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(self.tableView==tableView){
+    if(self.tableView==tableView && self.filtered==NO){
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
         //        NSLog(@"count %d %@", [sectionInfo numberOfObjects],self.fetchedResultsController.);
         return [sectionInfo numberOfObjects];
     }
-    else{
+    else
         return self.filteredFetchedResultsController.fetchedObjects.count;
-        //return [[self.filteredFetchedResultsController sections][section] numberOfObjects];
-    }
+    //return [[self.filteredFetchedResultsController sections][section] numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,19 +94,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-//        self.detailViewController.detailItem = object;
-//    }
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    // if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-//    [[segue destinationViewController] setDetailItem:object];
-//    // }
+    //    // if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    //    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    //    [[segue destinationViewController] setDetailItem:object];
+    //    // }
 }
 
 #pragma mark - Fetched results controller
@@ -155,10 +152,12 @@
 
 -(NSFetchedResultsController *) fetchedRCforTableView:(UITableView*)tableView
 {
-    if (self.tableView==tableView)
+    if (self.tableView==tableView && self.filtered==NO){
         return self.fetchedResultsController;
-    else
+    }
+    else{
         return self.filteredFetchedResultsController;
+    }
 }
 
 - (void)UpdatefilteredFetchedResultsController
@@ -177,8 +176,18 @@
     NSArray *sortDescriptors = @[sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    if (self.searchBar.text.length) {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+    if (self.searchBar.text.length>0 || self.filtered) {
+        NSPredicate *pred=nil;
+        if (self.searchBar.text.length>0) {
+             pred = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+        }
+        if (!self.searchBar.text.length >0 && self.filtered) {
+            pred=self.predicate;
+        }
+        if (self.predicate && self.searchBar.text.length >0) {
+            pred=[NSCompoundPredicate andPredicateWithSubpredicates:@[pred,self.predicate]];
+        }
+        NSLog(@"predicate %@",pred);
         [fetchRequest setPredicate:pred];
         self.searchString=self.searchBar.text;
     }

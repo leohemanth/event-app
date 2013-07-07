@@ -7,7 +7,7 @@
 //
 
 #import "NSManagedObject+Extended.h"
-
+#import "CoreData+MagicalRecord.h"
 
 @implementation NSManagedObject (Extended)
 +(NSString*)display{
@@ -28,4 +28,9 @@
 +(NSString*)detailLabelFor:(NSManagedObject*)object{
     return nil;
 }
++(id)findById:(NSInteger)model_id{
+    NSPredicate *eventFilter = [NSPredicate predicateWithFormat:@"event_id = %d",model_id ];
+    return [[[self class] MR_findAllWithPredicate:eventFilter]lastObject];
+}
+
 @end

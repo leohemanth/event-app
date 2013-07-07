@@ -7,7 +7,7 @@
 //
 
 #import "SpeakerViewController.h"
-
+#import "SessionViewController.h"
 @interface SpeakerViewController ()
 
 @end
@@ -40,4 +40,18 @@
     cell.textLabel.text = [Speaker textLabelFor:object];
     cell.detailTextLabel.text = [Speaker detailLabelFor:object];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UITableView *tv = (UITableView*)[sender superview];
+    Speaker *s = [[self fetchedRCforTableView:tv] objectAtIndexPath:[tv indexPathForCell:sender]];
+    if([segue.identifier isEqualToString:@"SpeakerToSession"]){
+        ((SessionViewController*)segue.destinationViewController).filtered=YES;
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"any speakers.speaker_id = %@",[s speaker_id]];
+        ((SessionViewController*)segue.destinationViewController).predicate=pred;
+    }
+}
+
+//
+
+
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B278EFFC7E9F4E5BA79AA31F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FE76E426004445AAE7B006 /* libPods.a */; };
+		F3523B841789FC44002F8297 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3523B831789FC44002F8297 /* MyCell.m */; };
 		F361F4061726657C00377ACF /* ListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F361F4051726657C00377ACF /* ListController.m */; };
 		F361F40F17266FD100377ACF /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = F361F40E17266FD000377ACF /* Model.m */; };
 		F369DD71172A53EC00F1A6D8 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F369DD70172A53EC00F1A6D8 /* EventViewController.m */; };
@@ -66,6 +67,10 @@
 /* Begin PBXFileReference section */
 		03FE76E426004445AAE7B006 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5AE4F5F9BA24FC6B4F462EA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		F3523B821789FC43002F8297 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
+		F3523B831789FC44002F8297 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
+		F3523B85178A0623002F8297 /* Speaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Speaker.h; path = model/Speaker.h; sourceTree = "<group>"; };
+		F3523B86178A0624002F8297 /* Speaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Speaker.m; path = model/Speaker.m; sourceTree = "<group>"; };
 		F361F4041726657200377ACF /* ListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListController.h; sourceTree = "<group>"; };
 		F361F4051726657C00377ACF /* ListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListController.m; sourceTree = "<group>"; };
 		F361F40D17266FD000377ACF /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = model/Model.h; sourceTree = "<group>"; };
@@ -105,8 +110,6 @@
 		F3A71156178818170074C548 /* Speaker+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Speaker+Extended.m"; path = "model/Speaker+Extended.m"; sourceTree = "<group>"; };
 		F3A7115D17881F3C0074C548 /* ModelClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelClass.h; path = event/model/ModelClass.h; sourceTree = "<group>"; };
 		F3A7115E17881F3C0074C548 /* ModelClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelClass.m; path = event/model/ModelClass.m; sourceTree = "<group>"; };
-		F3A711601788944C0074C548 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Speaker.h; path = model/Speaker.h; sourceTree = "<group>"; };
-		F3A711611788944C0074C548 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Speaker.m; path = model/Speaker.m; sourceTree = "<group>"; };
 		F3B54F7D1709FB0B0080658A /* event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B54F801709FB0B0080658A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F3B54F821709FB0B0080658A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -286,13 +289,15 @@
 				F36B2EA11725B195009F3083 /* LeftViewController.h */,
 				F36B2EA21725B195009F3083 /* LeftViewController.m */,
 				F3B54F9A1709FB0C0080658A /* MainStoryboard_iPhone.storyboard */,
+				F3523B821789FC43002F8297 /* MyCell.h */,
+				F3523B831789FC44002F8297 /* MyCell.m */,
 				F37EA08917183C0C00376C2D /* SessionListController.h */,
 				F37EA08A17183C2A00376C2D /* SessionListController.m */,
 				F3B54FA61709FB0C0080658A /* DetailViewController.h */,
 				F3B54FA71709FB0C0080658A /* DetailViewController.m */,
-				F3A711601788944C0074C548 /* Speaker.h */,
-				F3A711611788944C0074C548 /* Speaker.m */,
 				F3B54FA01709FB0C0080658A /* event.xcdatamodeld */,
+				F3523B85178A0623002F8297 /* Speaker.h */,
+				F3523B86178A0624002F8297 /* Speaker.m */,
 				F3B54F891709FB0B0080658A /* Supporting Files */,
 			);
 			path = event;
@@ -493,6 +498,7 @@
 				F3A711501787E4A60074C548 /* Session+Extended.m in Sources */,
 				F3A71154178817B00074C548 /* SpeakerViewController.m in Sources */,
 				F3A71157178818170074C548 /* Speaker+Extended.m in Sources */,
+				F3523B841789FC44002F8297 /* MyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "SessionViewController.h"
 #import "Event+Extended.h"
 #import "Event.h"
+#import "NSManagedObject+Extended.h"
 @interface EventViewController ()
 
 @end
@@ -27,30 +28,25 @@
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
     self.modell=[Event class];
-    //self.model=Eventm;
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView*)tableView{
     NSManagedObject *object = [[super fetchedRCforTableView:tableView] objectAtIndexPath:indexPath];
     cell.textLabel.text = [Event detailLabelFor:object];
     cell.detailTextLabel.text = [Event textLabelFor:object];
-    
 }
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UITableView *tv = (UITableView*)[sender superview];
+    Event *e = [[self fetchedRCforTableView:tv] objectAtIndexPath:[ tv indexPathForCell:sender]];    
     if([segue.identifier isEqualToString:@"eventToSession"]){
-  //      [Event obj]
- //       [self.tableView indexPathForSelectedRow].row;
-  //      ((SessionViewController*)sender).event=
+        ((SessionViewController*)segue.destinationViewController).filtered=YES;
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"event_id = %@",[e event_id]];
+        ((SessionViewController*)segue.destinationViewController).predicate=pred;
     }
 }
+
+
 @end

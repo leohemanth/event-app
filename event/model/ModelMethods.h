@@ -16,4 +16,5 @@
 +(NSString*)sortDescriptor;
 +(NSString*)textLabelFor:(NSManagedObject*)object;
 +(NSString*)detailLabelFor:(NSManagedObject*)object;
++(id)findById:(NSInteger)model_id;
 @end

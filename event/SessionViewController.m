@@ -44,8 +44,14 @@
     cell.detailTextLabel.text = [Session detailLabelFor:object];
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    self.filter=NO;
-    self.event=NO;
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UITableView *tv = (UITableView*)[sender superview];
+    Session *s = [[self fetchedRCforTableView:tv] objectAtIndexPath:[tv indexPathForCell:sender]];
+    if([segue.identifier isEqualToString:@"SessionToSpeaker"]){
+        ((SessionViewController*)segue.destinationViewController).filtered=YES;
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"any sessions.session_id = %@",[s session_id]];
+        ((SessionViewController*)segue.destinationViewController).predicate=pred;
+    }
 }
+
 @end

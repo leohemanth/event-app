@@ -59,7 +59,7 @@
         default:
             break;
     }
-    [self.viewDeckController closeLeftView];
+    [self.viewDeckController closeRightView];
 }
 
 @end

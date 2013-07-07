@@ -19,8 +19,10 @@
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *filteredFetchedResultsController;
+@property BOOL filtered;
+@property (strong,nonatomic) NSPredicate* predicate;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (assign,nonatomic) Class modell;
-
 -(NSFetchedResultsController *) fetchedRCforTableView:(UITableView*)tableView;
+-(NSPredicate*) mypredicate;
 @end

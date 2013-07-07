@@ -11,6 +11,12 @@
 #import "Session.h"
 #import "Speaker.h"
 #import "SyncEngine.h"
+#import "CoreData+MagicalRecord.h"
+@interface NSManagedObjectContext ()
++ (void)MR_setRootSavingContext:(NSManagedObjectContext *)context;
++ (void)MR_setDefaultContext:(NSManagedObjectContext *)moc;
+@end
+
 @implementation Model
 id<ModelUpdate> modelUpdater;
 RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping,*linksEntityMapping,*sessionCategoryEntityMapping;
@@ -69,10 +75,15 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:self.managedObjectStore];
     
+    // Configure MagicalRecord to use RestKit's Core Data stack
+    [NSPersistentStoreCoordinator MR_setDefaultStoreCoordinator:self.managedObjectStore.persistentStoreCoordinator];
+    [NSManagedObjectContext MR_setRootSavingContext:self.managedObjectStore.persistentStoreManagedObjectContext];
+    [NSManagedObjectContext MR_setDefaultContext:self.managedObjectStore.mainQueueManagedObjectContext];
     
     
-    //NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
-     NSString *url=@"http://localhost:3000";
+    
+    NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
+    // NSString *url=@"http://localhost:3000";
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
      //   RKLogConfigureByName("RestKit", RKLogLevelWarning);
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
