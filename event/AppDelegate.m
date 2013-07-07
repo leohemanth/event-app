@@ -16,7 +16,6 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
 {
     NSError *error = nil;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"event" ofType:@"momd"]];
-    NSLog(@"my db url %@",modelURL.path);
     // NOTE: Due to an iOS 5 bug, the managed object model returned is immutable.
     NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
     [self setManagedObjectStore: [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel]];
@@ -28,16 +27,16 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     NSAssert(persistentStore, @"Failed to add persistent store: %@", error);
     
     [self.managedObjectStore createManagedObjectContexts];
-
+    
     // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:self.managedObjectStore];
     
     NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
-//    RKLogConfigureByName("RestKit", RKLogLevelWarning);
-//    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-//    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit", RKLogLevelWarning);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     objectManager.managedObjectStore = self.managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];

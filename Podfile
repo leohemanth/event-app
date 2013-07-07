@@ -1,3 +1,4 @@
 platform :ios, "6.0"
 
-pod "AFNetworking"
+pod "ViewDeck",  "~>2.2.2"
+pod "RestKit", "~> 0.20.0"

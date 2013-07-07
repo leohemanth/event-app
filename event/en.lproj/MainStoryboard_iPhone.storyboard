@@ -116,6 +116,9 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Cgu-6G-m0e" kind="push" identifier="showDetail" id="mix-k9-ZWU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -156,7 +159,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SessionTable" id="Cgu-6G-m0e" customClass="SessionListController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ni9-IU-8iW">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -287,7 +290,7 @@
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
-        <class className="SessionListController" superclassName="ListController">
+        <class className="SessionListController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionListController.h"/>
         </class>
         <class className="SessionViewController" superclassName="ListController">
