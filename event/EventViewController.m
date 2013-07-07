@@ -48,7 +48,7 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"eventToSession"]){
-        [Event obj]
+  //      [Event obj]
  //       [self.tableView indexPathForSelectedRow].row;
   //      ((SessionViewController*)sender).event=
     }
