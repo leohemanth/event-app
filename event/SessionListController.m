@@ -11,7 +11,7 @@
 #import "Session.h"
 #import "DetailViewController.h"
 #import "ListController.h"
-
+#import "Model.h"
 @interface SessionListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -36,10 +36,10 @@
     UIRefreshControl *refreshControl = [UIRefreshControl new];
     [refreshControl addTarget:self action:@selector(loadLocs) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = appDelegate.managedObjectStore.mainQueueManagedObjectContext;
+  //  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [Model sharedModel].managedObjectStore.mainQueueManagedObjectContext;
     [super viewDidLoad];
-    self.model=Sessionm;
+    self.modell=[Session class];
     [self.refreshControl beginRefreshing];
 }
 

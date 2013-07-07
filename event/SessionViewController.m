@@ -26,7 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.model=Sessionm;
+    super.modell=[Session class];
+    //   super.model=Sessionm;
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -36,4 +38,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView*)tableView{
+    NSManagedObject *object = [[super fetchedRCforTableView:tableView] objectAtIndexPath:indexPath];
+    cell.textLabel.text = [Session textLabelFor:object];
+    cell.detailTextLabel.text = [Session detailLabelFor:object];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    self.filter=NO;
+    self.event=NO;
+}
 @end

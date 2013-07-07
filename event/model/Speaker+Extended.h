@@ -1,5 +1,5 @@
 //
-//  Speaker.m
+//  Session+Extended.h
 //  event
 //
 //  Created by Hemanth Prasad on 06/07/13.
@@ -7,14 +7,7 @@
 //
 
 #import "Speaker.h"
-#import "Links.h"
-#import "Session.h"
 
-
-@implementation Speaker
-
-@dynamic name;
-@dynamic links;
-@dynamic sessions;
+@interface Speaker (Extended)
 
 @end

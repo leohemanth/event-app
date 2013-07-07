@@ -20,6 +20,12 @@
 		F37EA086171832FC00376C2D /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0741718320000376C2D /* Event.m */; };
 		F37EA088171832FC00376C2D /* SessionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA0721718320000376C2D /* SessionCategory.m */; };
 		F37EA08B17183C2A00376C2D /* SessionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F37EA08A17183C2A00376C2D /* SessionListController.m */; };
+		F3A7113E178701440074C548 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7113D178701440074C548 /* SyncEngine.m */; };
+		F3A71142178707810074C548 /* Event+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A71141178707800074C548 /* Event+Extended.m */; };
+		F3A7114D1787E3340074C548 /* NSManagedObject+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7114C1787E3340074C548 /* NSManagedObject+Extended.m */; };
+		F3A711501787E4A60074C548 /* Session+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7114F1787E4A60074C548 /* Session+Extended.m */; };
+		F3A71154178817B00074C548 /* SpeakerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A71153178817B00074C548 /* SpeakerViewController.m */; };
+		F3A71157178818170074C548 /* Speaker+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A71156178818170074C548 /* Speaker+Extended.m */; };
 		F3B54F811709FB0B0080658A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F801709FB0B0080658A /* UIKit.framework */; };
 		F3B54F831709FB0B0080658A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F821709FB0B0080658A /* Foundation.framework */; };
 		F3B54F851709FB0B0080658A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B54F841709FB0B0080658A /* CoreGraphics.framework */; };
@@ -84,6 +90,23 @@
 		F37EA07C1718320000376C2D /* myLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = myLocation.m; path = model/myLocation.m; sourceTree = "<group>"; };
 		F37EA08917183C0C00376C2D /* SessionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionListController.h; sourceTree = "<group>"; };
 		F37EA08A17183C2A00376C2D /* SessionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionListController.m; sourceTree = "<group>"; };
+		F3A7113C178701440074C548 /* SyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncEngine.h; path = model/SyncEngine.h; sourceTree = "<group>"; };
+		F3A7113D178701440074C548 /* SyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncEngine.m; path = model/SyncEngine.m; sourceTree = "<group>"; };
+		F3A7113F178706240074C548 /* ModelMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelMethods.h; path = model/ModelMethods.h; sourceTree = "<group>"; };
+		F3A71140178707800074C548 /* Event+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Event+Extended.h"; path = "model/Event+Extended.h"; sourceTree = "<group>"; };
+		F3A71141178707800074C548 /* Event+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Event+Extended.m"; path = "model/Event+Extended.m"; sourceTree = "<group>"; };
+		F3A7114B1787E3340074C548 /* NSManagedObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Extended.h"; path = "model/NSManagedObject+Extended.h"; sourceTree = "<group>"; };
+		F3A7114C1787E3340074C548 /* NSManagedObject+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Extended.m"; path = "model/NSManagedObject+Extended.m"; sourceTree = "<group>"; };
+		F3A7114E1787E4A60074C548 /* Session+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Session+Extended.h"; path = "model/Session+Extended.h"; sourceTree = "<group>"; };
+		F3A7114F1787E4A60074C548 /* Session+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Session+Extended.m"; path = "model/Session+Extended.m"; sourceTree = "<group>"; };
+		F3A71152178817B00074C548 /* SpeakerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerViewController.h; sourceTree = "<group>"; };
+		F3A71153178817B00074C548 /* SpeakerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerViewController.m; sourceTree = "<group>"; };
+		F3A71155178818030074C548 /* Speaker+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Speaker+Extended.h"; path = "model/Speaker+Extended.h"; sourceTree = "<group>"; };
+		F3A71156178818170074C548 /* Speaker+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Speaker+Extended.m"; path = "model/Speaker+Extended.m"; sourceTree = "<group>"; };
+		F3A7115D17881F3C0074C548 /* ModelClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelClass.h; path = event/model/ModelClass.h; sourceTree = "<group>"; };
+		F3A7115E17881F3C0074C548 /* ModelClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelClass.m; path = event/model/ModelClass.m; sourceTree = "<group>"; };
+		F3A711601788944C0074C548 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Speaker.h; path = model/Speaker.h; sourceTree = "<group>"; };
+		F3A711611788944C0074C548 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Speaker.m; path = model/Speaker.m; sourceTree = "<group>"; };
 		F3B54F7D1709FB0B0080658A /* event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B54F801709FB0B0080658A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F3B54F821709FB0B0080658A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,27 +175,69 @@
 		F37EA0581718315900376C2D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F3A71143178707BE0074C548 /* mo models */,
 				F361F40D17266FD000377ACF /* Model.h */,
 				F361F40E17266FD000377ACF /* Model.m */,
+				F3A7113F178706240074C548 /* ModelMethods.h */,
+				F3A7113C178701440074C548 /* SyncEngine.h */,
+				F3A7113D178701440074C548 /* SyncEngine.m */,
+				F3A71144178707EC0074C548 /* extended models */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		F3A71143178707BE0074C548 /* mo models */ = {
+			isa = PBXGroup;
+			children = (
 				F37EA07B1718320000376C2D /* myLocation.h */,
 				F37EA07C1718320000376C2D /* myLocation.m */,
 				F37EA0791718320000376C2D /* Speaker.h */,
 				F37EA07A1718320000376C2D /* Speaker.m */,
-				F37EA0771718320000376C2D /* Session.h */,
 				F37EA0781718320000376C2D /* Session.m */,
+				F37EA0771718320000376C2D /* Session.h */,
 				F37EA0751718320000376C2D /* Links.h */,
 				F37EA0761718320000376C2D /* Links.m */,
-				F37EA0731718320000376C2D /* Event.h */,
-				F37EA0741718320000376C2D /* Event.m */,
 				F37EA0711718320000376C2D /* SessionCategory.h */,
 				F37EA0721718320000376C2D /* SessionCategory.m */,
+				F37EA0731718320000376C2D /* Event.h */,
+				F37EA0741718320000376C2D /* Event.m */,
 			);
-			name = model;
+			name = "mo models";
+			sourceTree = "<group>";
+		};
+		F3A71144178707EC0074C548 /* extended models */ = {
+			isa = PBXGroup;
+			children = (
+				F3A71140178707800074C548 /* Event+Extended.h */,
+				F3A71141178707800074C548 /* Event+Extended.m */,
+				F3A7114E1787E4A60074C548 /* Session+Extended.h */,
+				F3A7114F1787E4A60074C548 /* Session+Extended.m */,
+				F3A71155178818030074C548 /* Speaker+Extended.h */,
+				F3A71156178818170074C548 /* Speaker+Extended.m */,
+				F3A7114B1787E3340074C548 /* NSManagedObject+Extended.h */,
+				F3A7114C1787E3340074C548 /* NSManagedObject+Extended.m */,
+			);
+			name = "extended models";
+			sourceTree = "<group>";
+		};
+		F3A71151178817660074C548 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F369DD6F172A53EC00F1A6D8 /* EventViewController.h */,
+				F369DD70172A53EC00F1A6D8 /* EventViewController.m */,
+				F369DD72172A547800F1A6D8 /* SessionViewController.h */,
+				F369DD73172A547800F1A6D8 /* SessionViewController.m */,
+				F3A71152178817B00074C548 /* SpeakerViewController.h */,
+				F3A71153178817B00074C548 /* SpeakerViewController.m */,
+			);
+			name = "view controllers";
 			sourceTree = "<group>";
 		};
 		F3B54F741709FB0B0080658A = {
 			isa = PBXGroup;
 			children = (
+				F3A7115D17881F3C0074C548 /* ModelClass.h */,
+				F3A7115E17881F3C0074C548 /* ModelClass.m */,
 				F3B54F881709FB0B0080658A /* event */,
 				F3B54FB61709FB0C0080658A /* eventTests */,
 				F3B54F7F1709FB0B0080658A /* Frameworks */,
@@ -212,10 +277,7 @@
 		F3B54F881709FB0B0080658A /* event */ = {
 			isa = PBXGroup;
 			children = (
-				F369DD6F172A53EC00F1A6D8 /* EventViewController.h */,
-				F369DD70172A53EC00F1A6D8 /* EventViewController.m */,
-				F369DD72172A547800F1A6D8 /* SessionViewController.h */,
-				F369DD73172A547800F1A6D8 /* SessionViewController.m */,
+				F3A71151178817660074C548 /* view controllers */,
 				F37EA0581718315900376C2D /* model */,
 				F3B54F911709FB0B0080658A /* AppDelegate.h */,
 				F3B54F921709FB0B0080658A /* AppDelegate.m */,
@@ -228,6 +290,8 @@
 				F37EA08A17183C2A00376C2D /* SessionListController.m */,
 				F3B54FA61709FB0C0080658A /* DetailViewController.h */,
 				F3B54FA71709FB0C0080658A /* DetailViewController.m */,
+				F3A711601788944C0074C548 /* Speaker.h */,
+				F3A711611788944C0074C548 /* Speaker.m */,
 				F3B54FA01709FB0C0080658A /* event.xcdatamodeld */,
 				F3B54F891709FB0B0080658A /* Supporting Files */,
 			);
@@ -423,6 +487,12 @@
 				F361F40F17266FD100377ACF /* Model.m in Sources */,
 				F369DD71172A53EC00F1A6D8 /* EventViewController.m in Sources */,
 				F369DD74172A547800F1A6D8 /* SessionViewController.m in Sources */,
+				F3A7113E178701440074C548 /* SyncEngine.m in Sources */,
+				F3A71142178707810074C548 /* Event+Extended.m in Sources */,
+				F3A7114D1787E3340074C548 /* NSManagedObject+Extended.m in Sources */,
+				F3A711501787E4A60074C548 /* Session+Extended.m in Sources */,
+				F3A71154178817B00074C548 /* SpeakerViewController.m in Sources */,
+				F3A71157178818170074C548 /* Speaker+Extended.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

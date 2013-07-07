@@ -52,6 +52,10 @@
             list = [storyboard instantiateViewControllerWithIdentifier:@"sessionTable"];
             nav.viewControllers=[NSArray arrayWithObject:list];
             break;
+        case 2:
+            list = [storyboard instantiateViewControllerWithIdentifier:@"speakerTable"];
+            nav.viewControllers=[NSArray arrayWithObject:list];
+            break;
         default:
             break;
     }

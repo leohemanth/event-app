@@ -11,6 +11,8 @@
 #import "Event.h"
 #import "DetailViewController.h"
 #import "AppDelegate.h"
+#import "NSManagedObject+Extended.h"
+
 @interface ListController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView*)tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -36,24 +38,20 @@
     self.refreshControl = refreshControl;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.viewDeckController action:@selector(toggleLeftView)];
     self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = appDelegate.managedObjectStore.mainQueueManagedObjectContext;
-    self.title=[Model displayFor:self.model];
-    [self loadLocs];
-    [self.refreshControl beginRefreshing];
+    self.managedObjectContext = [Model sharedModel].managedObjectStore.mainQueueManagedObjectContext;
+
 }
--(void)setModel:(Models)model{
-    if(self.model!=model){
-        _model=model;
-        self.title=[Model displayFor:self.model];
+
+
+-(void)setModell:(Class)model{
+        _modell=model;
+        self.title=[self.modell display];
+    NSLog(@"title set to %@",[self.modell display]);
         _fetchedResultsController = nil;
         _filteredFetchedResultsController = nil;
         [self.tableView reloadData];
-        [self loadLocs];
-        [self.refreshControl beginRefreshing];
-    }
+//        [self.refreshControl beginRefreshing];
 }
-
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 //    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:[gestureRecognizer locationInView:self.tableView]];
 //    return indexPath.section < 2;
@@ -66,21 +64,6 @@
 - (void)viewDeckController:(IIViewDeckController *)viewDeckController willCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.viewDeckController action:@selector(toggleLeftView)];
     [(IIViewDeckController*)self.viewDeckController.leftController closeLeftView];
-}
-
-- (void)loadLocs
-{
-    [[RKObjectManager sharedManager] getObjectsAtPath:[Model listApiFor:self.model]
-                                           parameters:nil
-                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  [self.refreshControl endRefreshing];
-                                              }
-                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                                  [self.refreshControl endRefreshing];
-                                                  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An Error Has Occurred" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                  NSLog(@"error: %@",error);
-                                                  [alertView show];
-                                              }];
 }
 
 
@@ -112,19 +95,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = object;
-    }
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        self.detailViewController.detailItem = object;
+//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // if ([[segue identifier] isEqualToString:@"showDetail"]) {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [[segue destinationViewController] setDetailItem:object];
-    // }
+//    // if ([[segue identifier] isEqualToString:@"showDetail"]) {
+//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//    [[segue destinationViewController] setDetailItem:object];
+//    // }
 }
 
 #pragma mark - Fetched results controller
@@ -137,19 +120,19 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[Model entityFor:self.model] inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[self.modell entity] inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[Model sortDescriptorFor:self.model] ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[self.modell sortDescriptor] ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:[Model displayFor:self.model]];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:[self.modell display]];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -184,14 +167,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[Model entityFor:self.model] inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[self.modell entity] inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[Model sortDescriptorFor:self.model] ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[self.modell sortDescriptor] ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -201,7 +184,7 @@
         self.searchString=self.searchBar.text;
     }
     
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:self.searchString];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.filteredFetchedResultsController = aFetchedResultsController;
     
@@ -230,12 +213,5 @@
 {
     [self.tableView reloadData];
 }
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView*)tableView{
-    NSManagedObject *object = [[self fetchedRCforTableView:tableView] objectAtIndexPath:indexPath];
-    cell.textLabel.text = [Model textLabelFor:object ofType:self.model];
-    cell.detailTextLabel.text = [Model detailLabelFor:object ofType:self.model];
-}
-
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ListController.h"
+#import "Session+Extended.h"
 
 @interface SessionViewController : ListController
-
+@property  BOOL filter;
+@property (nonatomic,strong) Event* event;
 @end

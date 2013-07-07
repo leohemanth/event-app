@@ -7,22 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ModelMethods.h"
+#import "Event+Extended.h"
+
+@protocol ModelUpdate
+@required
++(void)beginUpdate;
++(void)finishUpdate;
++(void)updateError;
+@end
 
 @interface Model : NSObject
-//typedef enum : NSInteger {
-//    Eventm,
-//    Speakerm,
-//    Sessionm
-//} Models;
-typedef NS_ENUM(NSInteger, Models) {
-    Eventm,
-    Speakerm,
-    Sessionm
-};
-+(NSString*)displayFor:(Models)model;
-+(NSString*)listApiFor:(Models)model;
-+(NSString*)entityFor:(Models)model;
-+(NSString*)sortDescriptorFor:(Models)model;
-+(NSString*)textLabelFor:(NSManagedObject*)object ofType:(Models)model;
-+(NSString*)detailLabelFor:(NSManagedObject*)object ofType:(Models)model;
+@property (strong,nonatomic) RKManagedObjectStore *managedObjectStore;
++ (Model *)sharedModel;
+-(void)applicationLaunched;
++(void)init:(id<ModelUpdate>)uiModelUpdater;
++(void)update:(NSManagedObject*)object ofType:(Class)model;
++(void)updateAll:(NSManagedObject *)managedObject;
 @end

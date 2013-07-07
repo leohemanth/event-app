@@ -20,5 +20,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *filteredFetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (assign,nonatomic) Models model;
+@property (assign,nonatomic) Class modell;
+
+-(NSFetchedResultsController *) fetchedRCforTableView:(UITableView*)tableView;
 @end

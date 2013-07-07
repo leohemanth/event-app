@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Hemanth Prasad. All rights reserved.
 //
 
-#import "Model.h"
+#import "ModelClass.h"
 #import "Event.h"
 #import "Session.h"
 #import "Speaker.h"
-#import "SyncEngine.h"
-@implementation Model
+
+@implementation ModelClass
 id<ModelUpdate> modelUpdater;
 RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping,*linksEntityMapping,*sessionCategoryEntityMapping;
 
@@ -19,20 +19,114 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     modelUpdater=uiModelUpdater;
 }
 
-+(Model *)sharedModel{
-    static Model *sharedModel = nil;
++(ModelClass *)sharedModel{
+    static ModelClass *sharedModel = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedModel = [[Model alloc] init];
+        sharedModel = [[ModelClass alloc] init];
     });
     return sharedModel;
 }
++(NSString*)displayFor:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event display];
+            break;
+        case Speakerm:
+            return @"Speakers";
+            break;
+        case Sessionm:
+            return @"Sessions";
+            break;
+        default:
+            break;
+    }
+}
 
++(NSString*)listApiFor:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event listApi];
+            break;
+        case Speakerm:
+            return @"/api/v1/speakers";
+            break;
+        case Sessionm:
+            return @"/api/v1/sessions";
+            break;
+        default:
+            break;
+    }
+}
 
-+(void)update:(NSManagedObject*)object ofType:(Class)model{
++(NSString*)entityFor:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event entity];
+            break;
+        case Speakerm:
+            return @"Speaker";
+            break;
+        case Sessionm:
+            return @"Session";
+            break;
+        default:
+            break;
+    }
+    
+}
+
++(NSString*)sortDescriptorFor:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event sortDescriptor];
+            break;
+        case Speakerm:
+            return @"speaker_id";
+            break;
+        case Sessionm:
+            return @"session_id";
+            break;
+        default:
+            break;
+    }
+}
+
++(NSString*)textLabelFor:(NSManagedObject*)object ofType:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event textLabelFor:object];
+            break;
+        case Speakerm:
+            return ((Speaker*)object).name;
+            break;
+        case Sessionm:
+            return ((Session*)object).name;
+            break;
+        default:
+            break;
+    }
+}
+
++(NSString*)detailLabelFor:(NSManagedObject*)object ofType:(Models)model{
+    switch (model) {
+        case Eventm:
+            return [Event detailLabelFor:object];
+            break;
+        case Speakerm:
+            return ((Speaker*)object).name;
+            break;
+        case Sessionm:
+            return ((Session*)object).desc;
+            break;
+        default:
+            break;
+    }
+}
+
++(void)update:(NSManagedObject*)object ofType:(Models)model{
     [modelUpdater beginUpdate];
-    NSLog(@"my list api %@ nn model:%@",[model listApi],model);
-    [[RKObjectManager sharedManager] getObjectsAtPath:[model listApi]
+    [[RKObjectManager sharedManager] getObjectsAtPath:[ModelClass listApiFor:model]
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   [modelUpdater finishUpdate];
@@ -43,11 +137,11 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
 }
 
 +(void)updateAll:(NSManagedObject *)managedObject{
-    [Model update:managedObject ofType:[Event class]];
-    [Model update:managedObject ofType:[Session class]];
+    [ModelClass update:managedObject ofType:Eventm];
+    [ModelClass update:managedObject ofType:Sessionm];
 }
 
--(void)applicationLaunched{
+-(void)initModel{
     NSError *error = nil;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"event" ofType:@"momd"]];
 
@@ -59,9 +153,9 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"event.sqlite"];
     NSAssert(path, @"Failed to add persistent store: %@", error);
     
-    [self.managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil
-                                          withConfiguration:nil
-                                                    options:@{NSInferMappingModelAutomaticallyOption: @YES,NSMigratePersistentStoresAutomaticallyOption: @YES}
+    [self.managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil
+                                                    options: @{
+                     NSInferMappingModelAutomaticallyOption: @YES, NSMigratePersistentStoresAutomaticallyOption: @YES}
                                                       error:nil];
     
     [self.managedObjectStore createManagedObjectContexts];
@@ -71,19 +165,15 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     
     
     
-    //NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
-     NSString *url=@"http://localhost:3000";
+    NSString *url=@"http://aqueous-scrubland-8867.herokuapp.com";
+    
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
-     //   RKLogConfigureByName("RestKit", RKLogLevelWarning);
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-//    NSLog(<#NSString *format, ...#>)
-     //   RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    //    RKLogConfigureByName("RestKit", RKLogLevelWarning);
+    //    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    //    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     objectManager.managedObjectStore = self.managedObjectStore;
     
     [RKObjectManager setSharedManager:objectManager];
-    
-    // Enable Activity Indicator Spinner
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     [self mapEntities];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventEntityMapping pathPattern:@"/api/v1/events" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
@@ -93,12 +183,7 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
     RKResponseDescriptor *responseDescriptor2 = [RKResponseDescriptor responseDescriptorWithMapping:sessionEntitiyMapping pathPattern:@"/api/v1/sessions" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     [objectManager addResponseDescriptor:responseDescriptor2];
-    
-    RKResponseDescriptor *responseDescriptor3 = [RKResponseDescriptor responseDescriptorWithMapping:speakerEntityMapping pathPattern:@"/api/v1/speakers" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    [objectManager addResponseDescriptor:responseDescriptor3];
-    
-    [SyncEngine startSync];
+
 }
 
 -(void)mapEntities{
@@ -113,6 +198,7 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
      }];
     eventEntityMapping.identificationAttributes = @[ @"event_id" ];
     
+    
     sessionEntitiyMapping = [RKEntityMapping mappingForEntityForName:@"Session" inManagedObjectStore:self.managedObjectStore];
     [sessionEntitiyMapping addAttributeMappingsFromDictionary:@{
      @"name":           @"name",
@@ -124,19 +210,13 @@ RKEntityMapping *eventEntityMapping,*sessionEntitiyMapping,*speakerEntityMapping
      @"id":             @"session_id",
      }];
     sessionEntitiyMapping.identificationAttributes = @[ @"session_id" ];
-    
-    speakerEntityMapping = [RKEntityMapping mappingForEntityForName:@"Speaker" inManagedObjectStore:self.managedObjectStore];
-    [speakerEntityMapping addAttributeMappingsFromDictionary:@{
-     @"name":           @"name",
-     @"id":             @"speaker_id",
-     }];
-    
-    RKRelationshipMapping *sessionRelationship =
-    [RKRelationshipMapping relationshipMappingFromKeyPath:@"sessions"
-                                                toKeyPath:@"sessions"
-                                              withMapping:sessionEntitiyMapping];
-    [speakerEntityMapping addPropertyMapping:sessionRelationship];
-    
-    speakerEntityMapping.identificationAttributes = @[ @"speaker_id" ];
 }
+
+- (id)optionsForSqliteStore {
+    return @{
+             NSInferMappingModelAutomaticallyOption: @YES,
+             NSMigratePersistentStoresAutomaticallyOption: @YES
+             };
+}
+
 @end

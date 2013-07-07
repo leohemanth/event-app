@@ -1,20 +1,18 @@
 //
-//  EventViewController.m
+//  SpeakerViewController.m
 //  event
 //
-//  Created by Hemanth Prasad on 26/04/13.
+//  Created by Hemanth Prasad on 06/07/13.
 //  Copyright (c) 2013 Hemanth Prasad. All rights reserved.
 //
 
-#import "EventViewController.h"
-#import "SessionViewController.h"
-#import "Event+Extended.h"
-#import "Event.h"
-@interface EventViewController ()
+#import "SpeakerViewController.h"
+
+@interface SpeakerViewController ()
 
 @end
 
-@implementation EventViewController
+@implementation SpeakerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +25,8 @@
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
-    self.modell=[Event class];
-    //self.model=Eventm;
+    super.modell=[Speaker class];
 	// Do any additional setup after loading the view.
 }
 
@@ -39,18 +35,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView*)tableView{
     NSManagedObject *object = [[super fetchedRCforTableView:tableView] objectAtIndexPath:indexPath];
-    cell.textLabel.text = [Event detailLabelFor:object];
-    cell.detailTextLabel.text = [Event textLabelFor:object];
-    
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"eventToSession"]){
-        [Event obj]
- //       [self.tableView indexPathForSelectedRow].row;
-  //      ((SessionViewController*)sender).event=
-    }
+    cell.textLabel.text = [Speaker textLabelFor:object];
+    cell.detailTextLabel.text = [Speaker detailLabelFor:object];
 }
 @end
